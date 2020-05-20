@@ -1,0 +1,9 @@
+import requests, json
+#from bs4 import BeautifulSoup
+
+page = requests.get("https://www.ncsc.gov.uk/api/1/services/v1/search/query.json?topics=cyber+threat&sort=date%2Bdesc&start=0&rows=40")
+
+docs = json.loads(page.text)
+
+for doc in docs['documents']:
+  print("Date: {} Title: {} URL: https://www.ncsc.gov.uk {} ".format(doc['date'],doc['title'], doc['pageUrl']))
